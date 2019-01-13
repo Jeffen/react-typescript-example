@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Ticket } from '../store/order';
+import { Ticket } from '../shared/model';
 
 export function toStandardDate(timeStr: string): Date {
   return moment(timeStr, 'YYYY-MM-DD HH:mm').toDate();

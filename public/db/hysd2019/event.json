@@ -1,0 +1,107 @@
+{
+  "projectId": "hysd2019",
+  "info": {
+    "title": "华韵盛典 2019新年音乐会",
+    "coverImg": "cover",
+    "seatmapImg": "seats"
+  },
+  "pickupLocations": [
+    {
+      "value": "1123",
+      "label": "(Headquarters) 1123 Leslie Street, Toronto"
+    },
+    {
+      "value": "5140",
+      "label": "(North York) 5140 Yonge Street, Level 5, North York"
+    },
+    {
+      "value": "96",
+      "label": "(Markham) 96 Steelcase Rd West, Markham"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "1",
+      "date": "2019-01-23 19:30",
+      "default": true,
+      "disabled": false,
+      "theatre": "Toronto Centre for the Arts",
+      "address": "5040 Yonge St, North York, ON M2N 6R8",
+      "ticketTypes": [
+        {
+          "ticketName": "ticket38:1",
+          "facePrice": 38.0,
+          "price": 34.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket58:1",
+          "facePrice": 58.0,
+          "price": 52.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket88:1",
+          "facePrice": 88.0,
+          "price": 79.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket128:1",
+          "facePrice": 108.0,
+          "price": 108.0,
+          "quantity": 0,
+          "restQuantity": 0
+        }
+      ],
+      "discountTypes": [
+        { "label": "成人票", "rate": 1 },
+        { "label": "老人小孩半价票", "rate": 0.5 }
+      ]
+    },
+    {
+      "id": "2",
+      "date": "2019-01-24 19:30",
+      "disabled": false,
+      "theatre": "Toronto Centre for the Arts",
+      "address": "5040 Yonge St, North York, ON M2N 6R8",
+      "ticketTypes": [
+        {
+          "ticketName": "ticket38:2",
+          "facePrice": 38.0,
+          "price": 34.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket58:2",
+          "facePrice": 58.0,
+          "price": 52.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket88:2",
+          "facePrice": 88.0,
+          "price": 79.2,
+          "quantity": 0,
+          "restQuantity": 0
+        },
+        {
+          "ticketName": "ticket128:2",
+          "facePrice": 108.0,
+          "price": 108.0,
+          "quantity": 0,
+          "restQuantity": 0
+        }
+      ],
+      "discountTypes": [
+        { "label": "成人票", "rate": 1 },
+        { "label": "老人小孩半价票", "rate": 0.5 }
+      ]
+    }
+  ]
+}

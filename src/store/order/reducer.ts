@@ -1,4 +1,4 @@
-import { Order } from './model';
+import { Order } from '../../shared/model';
 import { OrderActionTypes, OrderActionsUnion } from './action';
 import { calcSubtotal } from '../../libs/utils';
 

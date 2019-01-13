@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Ticket } from './model';
+import { Ticket } from '../../shared/model';
 
 export enum OrderActionTypes {
   INIT = '[Order] Init',
