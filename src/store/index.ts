@@ -11,11 +11,13 @@ const rootEpic = combineEpics(...orderEpics);
 const rootReducer = combineReducers({ order });
 
 const epicMiddleware = createEpicMiddleware();
+//@ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore() {
   const store = createStore(
     rootReducer,
-    compose(applyMiddleware(epicMiddleware))
+    composeEnhancers(applyMiddleware(epicMiddleware))
   );
   epicMiddleware.run(rootEpic);
 

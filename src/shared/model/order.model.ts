@@ -10,7 +10,7 @@ export interface Order {
 
 export interface Ticket {
   ticketName: string;
-  facePrice: string;
+  facePrice: number;
   price: number;
   quantity: number;
   restQuantity: number;

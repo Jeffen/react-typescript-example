@@ -11,4 +11,4 @@ const addTicketEpic: Epic = (action$, state$) =>
     })
   );
 
-export default [addTicketEpic];
+export default [];

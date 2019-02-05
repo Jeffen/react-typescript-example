@@ -1,20 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
+import { RouteComponentProps } from 'react-router';
 import ContentLoader from 'react-content-loader';
+import groupBy from 'lodash/groupBy';
 
+import { Event } from '../../shared/model';
 import cover from './img/cover.jpg';
 
 import InfoPanel from './infopanel';
+import EventContent from './content';
 
-function Info({ history }) {
-  const [event, setEvent] = useState(null);
+export default function Info({ history }: RouteComponentProps) {
+  const [event, setEvent] = useState<Event>(null);
 
   const fetchEventData = async () => {
-    const result = await axios(
+    const projConfig = await axios(
       `${process.env.PUBLIC_URL}/db/hysd2019/event.json`
-    );
-    setEvent(result.data);
+    ).then(res => res.data);
+    const vendor = await axios(
+      'https://eventtest.ottpay.com/api/ticket/summary/hysd2019'
+    ).then(res => groupBy(res.data, ele => ele.ticketName.slice(-1)));
+
+    for (const key in vendor) {
+      const s = projConfig.sessions.find(ele => ele.id === key);
+      if (s) {
+        s.ticketTypes = vendor[key];
+      }
+    }
+    setEvent(projConfig);
   };
 
   useEffect(() => {
@@ -28,14 +43,18 @@ function Info({ history }) {
           {event ? <img src={cover} id='cover-img' alt='' /> : <ImgLoader />}
         </Grid>
         <Grid item md={6} xs={12}>
-          {event ? <InfoPanel event={event} /> : <PanelLoader />}
+          {event ? (
+            <InfoPanel event={event} history={history} />
+          ) : (
+            <PanelLoader />
+          )}
         </Grid>
       </Grid>
+      <Divider variant='middle' style={{ margin: '3em' }} />
+      {event ? <EventContent event={event} /> : null}
     </div>
   );
 }
-
-export default Info;
 
 /**
  * Place Holders when loading page

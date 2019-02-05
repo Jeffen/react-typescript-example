@@ -1,9 +1,9 @@
-import moment from 'moment';
+// import moment from 'dayjs';
 import { Ticket } from '../shared/model';
 
-export function toStandardDate(timeStr: string): Date {
-  return moment(timeStr, 'YYYY-MM-DD HH:mm').toDate();
-}
+// export function toStandardDate(timeStr: string): Date {
+//   return moment(timeStr, 'YYYY-MM-DD HH:mm').toDate();
+// }
 
 export function calcSubtotal(ticket: Ticket): Ticket {
   const newT = { ...ticket };

@@ -1,4 +1,6 @@
-export default theme => ({
+import { Theme } from '@material-ui/core';
+
+export default (theme: Theme) => ({
   margin: {
     marginBottom: 16
   },
@@ -35,5 +37,43 @@ export default theme => ({
     '&:focus': {
       boxShadow: 'none'
     }
+  },
+  numBtn: {
+    '&:hover': {
+      backgroundColor: 'transparent'
+    }
+  },
+  quantityInput: {
+    width: 48,
+    padding: '.67857143em 1em',
+    paddingRight: 6,
+    'text-align': 'center',
+    border: '1px solid rgba(34,36,38,.15)',
+    outline: 0,
+    lineHeight: '1.21428571em',
+    fontSize: 16,
+    borderRadius: 4,
+    color: 'black'
+  },
+  actionBtn: {
+    marginTop: 32,
+    marginRight: 12,
+    letterSpacing: 1.4,
+    fontSize: 16,
+    height: 54,
+    width: 168
+  },
+  badge: {
+    color: '#d50000',
+    display: 'inline-flex',
+    top: -2,
+    marginLeft: 6,
+    fontSize: '0.9em',
+    background: 'white',
+    width: 18,
+    height: 18,
+    lineHeight: '18px',
+    borderRadius: '50%',
+    justifyContent: 'center'
   }
 });

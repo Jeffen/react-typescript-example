@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 export function DisplayPrice({ classes, discount, ticket }) {
   const [price, setPrice] = useState(0);
@@ -24,15 +24,17 @@ export function DisplayPrice({ classes, discount, ticket }) {
         票价
       </Grid>
       <Grid item xs={9}>
-        {!rate && (
+        {rate !== 1 && (
           <span className={classes.priceText}>
             CA${(price * rate).toFixed(2)}
           </span>
         )}
-        <span className={rate ? classes.priceText : classes.oldPrice}>
+        <span className={rate !== 1 ? classes.oldPrice : classes.priceText}>
           CA${price.toFixed(2)}
         </span>
       </Grid>
     </Grid>
   );
 }
+
+export default DisplayPrice;

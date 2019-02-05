@@ -5,12 +5,9 @@ export enum OrderActionTypes {
   INIT = '[Order] Init',
   ADD_TICKET = '[Order] Add Ticket',
   REMOVE_TICKET = '[Order] Remove Ticket',
-  APPLY_COUPON = '[Order] Apply Coupon',
-  CLEAR_COUPON = '[Order] Clear Coupon',
   RESET = '[Order] Reset',
   ERROR = '[Order] Error'
 }
-
 export class InitOrderAction implements Action {
   readonly type = OrderActionTypes.INIT;
 
@@ -23,10 +20,27 @@ export class AddTicketAction implements Action {
   constructor(public payload: Ticket) {}
 }
 
-export class ErrorAction implements Action {
-  readonly type = OrderActionTypes.ERROR;
+export class RemoveTicketAction implements Action {
+  readonly type = OrderActionTypes.REMOVE_TICKET;
 
-  constructor(public payload: string) {}
+  constructor(public payload: Ticket) {}
 }
 
-export type OrderActionsUnion = InitOrderAction | AddTicketAction;
+export class ResetOrder implements Action {
+  readonly type = OrderActionTypes.RESET;
+
+  constructor() {}
+}
+
+export class OrderError implements Action {
+  readonly type = OrderActionTypes.ERROR;
+
+  constructor(public payload: Response) {}
+}
+
+export type OrderActionsUnion =
+  | InitOrderAction
+  | ResetOrder
+  | AddTicketAction
+  | RemoveTicketAction
+  | OrderError;

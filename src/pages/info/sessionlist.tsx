@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grid, Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
-import moment from 'moment';
+import moment from 'dayjs';
 
 export function Sessionlist({
   classes,
@@ -31,3 +32,5 @@ export function Sessionlist({
     </Grid>
   );
 }
+
+export default Sessionlist;

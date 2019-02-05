@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 
 export function Ticketlist({ classes, ticketList, onTicketChange, ticket }) {
@@ -24,3 +25,5 @@ export function Ticketlist({ classes, ticketList, onTicketChange, ticket }) {
     </Grid>
   );
 }
+
+export default Ticketlist;

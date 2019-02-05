@@ -1,35 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Button, withStyles, Typography } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core';
+import { Grid, Button, Typography } from '@material-ui/core';
 
 import styles from './styles';
+import { AddTicketAction } from '../../store/order';
 
-import { Ticketlist } from './ticketlist';
-import { Sessionlist } from './sessionlist';
-import { Discountlist } from './discountlist';
-import { DisplayPrice } from './price';
-import { Session, TicketType, DiscountType } from '../../shared/model';
+import Ticketlist from './ticketlist';
+import Sessionlist from './sessionlist';
+import Discountlist from './discountlist';
+import DisplayPrice from './price';
+import Quantity from './quantity';
+import ActionBtn from './actionBtn';
+import { Session, TicketType } from '../../shared/model';
 
-function InfoPanel({ classes, event }) {
-  const [ticket, setTicket] = useState(null);
+function InfoPanel({ history, event, classes, dispatch, items }) {
+  // Event handler
   const [session, setSession] = useState(new Session());
   const [discount, setDiscount] = useState(null);
+  useEffect(() => {
+    const s = event.sessions.find(ele => ele.default);
+    setSession(s);
+    setDiscount(s.discountTypes[0]);
+  }, [event]);
 
-  useEffect(() => setSession(event.sessions.find(ele => ele.default)), [event]);
+  // Session handler
+  const [ticket, setTicket] = useState(null);
+  useEffect(() => {
+    setTicket(
+      session.ticketTypes.find(ele => !!ele.restQuantity) || new TicketType()
+    );
+  }, [session]);
 
-  useEffect(
-    () => {
-      setTicket(
-        session.ticketTypes.find(ele => !!ele.restQuantity) || new TicketType()
-      );
-      setDiscount(session.discountTypes[0] || new DiscountType());
-    },
-    [session]
-  );
+  // Quantity handler
+  const [quantity, setQuantity] = useState(0);
+  useEffect(() => setQuantity(1), [ticket]);
+
+  // Binding events
+  const handleCart = () => {
+    const payload = { ...ticket, coupon: discount.code, quantity };
+    dispatch({ ...new AddTicketAction(payload) });
+  };
+  const handleCheckout = () => {
+    history.push('/confirm');
+  };
 
   return (
     <Grid container direction='row'>
       <Typography variant='h5' className={classes.margin}>
-        华韵盛典 2019新年音乐会
+        {event.info.title}
       </Typography>
       <DisplayPrice classes={classes} discount={discount} ticket={ticket} />
 
@@ -74,7 +93,7 @@ function InfoPanel({ classes, event }) {
         </Grid>
       </Grid>
 
-      <Grid container direction='row'>
+      <Grid container direction='row' className={classes.margin}>
         <Grid item xs={3}>
           地址
         </Grid>
@@ -82,8 +101,24 @@ function InfoPanel({ classes, event }) {
           {session.address}
         </Grid>
       </Grid>
+
+      <Quantity
+        classes={classes}
+        ticket={ticket}
+        quantity={quantity}
+        onQuantityChange={setQuantity}
+      />
+
+      <ActionBtn
+        classes={classes}
+        session={session}
+        items={items}
+        onAddToCart={handleCart}
+        onCheckout={handleCheckout}
+      />
     </Grid>
   );
 }
 
-export default withStyles(styles)(InfoPanel);
+const mapStateToProps = state => ({ items: state.order.items });
+export default withStyles(styles)(connect(mapStateToProps)(InfoPanel));
