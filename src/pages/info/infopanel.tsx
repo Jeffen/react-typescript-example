@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core';
 import { Grid, Button, Typography } from '@material-ui/core';
 
 import styles from './styles';
-import { AddTicketAction } from '../../store/order';
+import { AddTicketAction, InitOrderAction } from '../../store/order';
 
 import Ticketlist from './ticketlist';
 import Sessionlist from './sessionlist';
@@ -22,6 +22,12 @@ function InfoPanel({ history, event, classes, dispatch, items }) {
     const s = event.sessions.find(ele => ele.default);
     setSession(s);
     setDiscount(s.discountTypes[0]);
+    dispatch({
+      ...new InitOrderAction({
+        projectId: event.projectId,
+        title: event.info.title
+      })
+    });
   }, [event]);
 
   // Session handler
@@ -38,7 +44,12 @@ function InfoPanel({ history, event, classes, dispatch, items }) {
 
   // Binding events
   const handleCart = () => {
-    const payload = { ...ticket, coupon: discount.code, quantity };
+    const payload = {
+      ...ticket,
+      quantity,
+      coupon: discount.code,
+      date: session.date
+    };
     dispatch({ ...new AddTicketAction(payload) });
   };
   const handleCheckout = () => {

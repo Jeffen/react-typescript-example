@@ -17,7 +17,7 @@ class App extends Component {
         <CssBaseline />
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path='/' render={props => <Home />} />
+            {/* <Route exact path='/' render={props => <Home />} /> */}
             <Route exact path='/info' render={props => <Info {...props} />} />
             <Route
               exact
@@ -29,10 +29,10 @@ class App extends Component {
               path='/result'
               render={props => <Result {...props} />}
             />
-            <Redirect to='/' />
+            <Redirect from="/" to='/info' />
           </Switch>
         </Suspense>
-        <Link to='/'>Home</Link>
+        {/* <Link to='/'>Home</Link> */}
         <Link to='/info'>info</Link>
         <Link to='/confirm'>Checkout</Link>
         <Link to='/result'>result</Link>

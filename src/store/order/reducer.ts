@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce';
 import remove from 'lodash/remove';
 
 const initialState: Order = {
-  project: null,
+  projectId: null,
   id: null,
   orderId: null,
   shipping: null,
@@ -20,11 +20,10 @@ export function reducer(
 ): Order {
   switch (action.type) {
     case OrderActionTypes.INIT: {
-      const ticket = calcSubtotal(action.payload);
-      return Object.assign({}, state, {
-        items: [ticket],
-        totalAmount: ticket.subtotal,
-        subtotalAmount: ticket.facePrice
+      const payload = action.payload;
+      return Object.assign(state, {
+        projectId: payload.projectId,
+        title: payload.title
       });
     }
 

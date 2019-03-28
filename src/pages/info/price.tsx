@@ -24,12 +24,12 @@ export function DisplayPrice({ classes, discount, ticket }) {
         票价
       </Grid>
       <Grid item xs={9}>
-        {rate !== 1 && (
+        {rate < 1 && (
           <span className={classes.priceText}>
             CA${(price * rate).toFixed(2)}
           </span>
         )}
-        <span className={rate !== 1 ? classes.oldPrice : classes.priceText}>
+        <span className={rate < 1 ? classes.oldPrice : classes.priceText}>
           CA${price.toFixed(2)}
         </span>
       </Grid>

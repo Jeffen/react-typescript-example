@@ -25,7 +25,7 @@ export default (theme: Theme) => ({
     }
   },
   selected: {
-    backgroundColor: '#d50000 !important',
+    backgroundColor: `${theme.palette.primary.main} !important`,
     color: 'white'
   },
   priceBtn: {

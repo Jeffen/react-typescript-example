@@ -10,7 +10,7 @@ export function Discountlist({
   onDiscountChange
 }) {
   const selected = ele =>
-    ele.label === discount.label ? classes.selected : '';
+    ele.name === discount.name ? classes.selected : '';
   return (
     <Grid container direction='row' className={classes.margin}>
       <Grid item xs={3}>
@@ -24,7 +24,7 @@ export function Discountlist({
             onClick={() => onDiscountChange(ele)}
             className={classNames(classes.flatBtn, selected(ele))}
           >
-            {ele.label}
+            {ele.name}
           </Button>
         ))}
       </Grid>

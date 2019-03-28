@@ -17,18 +17,18 @@ export default function Info({ history }: RouteComponentProps) {
 
   const fetchEventData = async () => {
     const projConfig = await axios(
-      `${process.env.PUBLIC_URL}/db/hysd2019/event.json`
-    ).then(res => res.data);
-    const vendor = await axios(
-      'https://eventtest.ottpay.com/api/ticket/summary/hysd2019'
-    ).then(res => groupBy(res.data, ele => ele.ticketName.slice(-1)));
+      `${process.env.REACT_APP_PUBLIC_URL}/api/event/hysd2019`
+    ).then(res => res.data.result);
+    // const vendor = await axios(
+    //   'https://event.ottpay.com/api/ticket/summary/hysd2019'
+    // ).then(res => groupBy(res.data, ele => ele.ticketName.slice(-1)));
 
-    for (const key in vendor) {
-      const s = projConfig.sessions.find(ele => ele.id === key);
-      if (s) {
-        s.ticketTypes = vendor[key];
-      }
-    }
+    // for (const key in vendor) {
+    //   const s = projConfig.sessions.find(ele => ele.id === key);
+    //   if (s) {
+    //     s.ticketTypes = vendor[key];
+    //   }
+    // }
     setEvent(projConfig);
   };
 

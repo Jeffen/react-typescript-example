@@ -11,7 +11,7 @@ export enum OrderActionTypes {
 export class InitOrderAction implements Action {
   readonly type = OrderActionTypes.INIT;
 
-  constructor(public payload: Ticket) {}
+  constructor(public payload: { projectId; title }) {}
 }
 
 export class AddTicketAction implements Action {

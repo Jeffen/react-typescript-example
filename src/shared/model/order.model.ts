@@ -1,5 +1,5 @@
 export interface Order {
-  project: string;
+  projectId: string;
   id: string;
   orderId: number;
   shipping: Shipping;
@@ -10,6 +10,7 @@ export interface Order {
 
 export interface Ticket {
   ticketName: string;
+  date: string;
   facePrice: number;
   price: number;
   quantity: number;
